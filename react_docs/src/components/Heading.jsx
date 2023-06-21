@@ -1,7 +1,7 @@
 const Heading = () => {
   return (
-    <header>
-      <h1 className="text-3xl text-center font-bold text-sky-500 mb-10">
+    <header className="h-12">
+      <h1 className="pt-2 text-3xl text-center font-bold text-sky-500 mb-10">
         React Documentation
       </h1>
     </header>
