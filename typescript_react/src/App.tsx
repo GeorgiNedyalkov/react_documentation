@@ -75,7 +75,7 @@ export default function App() {
 
   useEffect(() => {
     getByName(search).then(setPokemon);
-  }, []);
+  }, [search]);
 
   const pokemonWithPower = useMemo(
     () =>
