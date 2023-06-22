@@ -1,5 +1,9 @@
-function App() {
-  return <></>;
-}
+import TaskApp from "./components/TaskApp/TaskApp";
 
-export default App;
+export default function App() {
+  return (
+    <div>
+      <TaskApp />
+    </div>
+  );
+}
