@@ -1,7 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { TasksDispatchContext } from "../../../contexts/TaskContext";
 
-export default function AddTask({ onAddTask }) {
+let nextId = 4;
+
+export default function AddTask() {
   const [text, setText] = useState("");
+  const dispatch = useContext(TasksDispatchContext);
 
   return (
     <div className="mb-4">
@@ -15,7 +19,11 @@ export default function AddTask({ onAddTask }) {
       <button
         onClick={() => {
           setText("");
-          onAddTask(text);
+          dispatch({
+            type: "add_task",
+            id: nextId++,
+            text: text,
+          });
         }}
         className="border w-20 dark:bg-white dark:text-black bg-black text-white"
       >

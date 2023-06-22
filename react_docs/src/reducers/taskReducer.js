@@ -13,7 +13,7 @@ export default function tasksReducer(tasks, action) {
     case "delete_task": {
       return tasks.filter((task) => task.id !== action.id);
     }
-    case "edit_task": {
+    case "changed_task": {
       return tasks.map((task) => {
         if (task.id === action.task.id) {
           return action.task;
@@ -23,6 +23,6 @@ export default function tasksReducer(tasks, action) {
       });
     }
     default:
-      throw new Error("Unknown action");
+      throw new Error(`Unknown action: ${action.type}`);
   }
 }

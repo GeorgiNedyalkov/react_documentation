@@ -1,19 +1,21 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import {
+  TasksContext,
+  TasksDispatchContext,
+} from "../../../contexts/TaskContext";
 
-export default function TaskList({ tasks, onDeleteTask, onChangeTask }) {
+export default function TaskList() {
+  const tasks = useContext(TasksContext);
   const taskList = tasks.map((task) => (
     <li key={task.id}>
-      <Task
-        task={task}
-        onDeleteTask={onDeleteTask}
-        onChangeTask={onChangeTask}
-      />
+      <Task task={task} />
     </li>
   ));
   return <ul>{taskList}</ul>;
 }
 
-function Task({ task, onDeleteTask, onChangeTask }) {
+function Task({ task }) {
+  const dispatch = useContext(TasksDispatchContext);
   const [isEditing, setIsEditing] = useState(false);
   let taskContent;
   if (isEditing) {
@@ -24,9 +26,12 @@ function Task({ task, onDeleteTask, onChangeTask }) {
           type="text"
           value={task.text}
           onChange={(e) =>
-            onChangeTask({
-              ...task,
-              text: e.target.value,
+            dispatch({
+              type: "changed_task",
+              task: {
+                ...task,
+                text: e.target.value,
+              },
             })
           }
         />
@@ -57,11 +62,24 @@ function Task({ task, onDeleteTask, onChangeTask }) {
       <input
         type="checkbox"
         defaultChecked={task.isDone}
-        onChange={(e) => onChangeTask({ ...task, isDone: e.target.checked })}
+        onChange={(e) => {
+          dispatch({
+            type: "changed_task",
+            task: {
+              ...task,
+              isDone: task.isDone,
+            },
+          });
+        }}
       />
       {taskContent}
       <button
-        onClick={() => onDeleteTask(task.id)}
+        onClick={() =>
+          dispatch({
+            type: "delete_task",
+            id: task.id,
+          })
+        }
         className="border w-20 dark:bg-white dark:text-black bg-black text-white"
       >
         Delete
