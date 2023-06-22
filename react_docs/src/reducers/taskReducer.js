@@ -26,9 +26,3 @@ export default function tasksReducer(tasks, action) {
       throw new Error(`Unknown action: ${action.type}`);
   }
 }
-
-const initialTasks = [
-  { id: 1, text: "Do 100 push ups", isDone: false },
-  { id: 2, text: "Make coffee", isDone: false },
-  { id: 3, text: "Do 4 hours of focussed work", isDone: false },
-];
