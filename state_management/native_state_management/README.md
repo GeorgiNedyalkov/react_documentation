@@ -132,6 +132,8 @@ The other time we want to use useCallback is if we are creating a custom hook.
 
 ### useEffect
 
+[useEffect](https://blog.logrocket.com/understanding-react-useeffect-cleanup-function/)
+
 We use useEffect when we want to get data from a server and load it initially in our app.
 
 If we are responding to a user interaction we may not need use effect we can just do the
@@ -207,3 +209,7 @@ The most common use for useRef is to get a reference for an HTML element and acc
 
 The second use is to set state without triggering a re-redner. When we use useRef and we set the reference to a html element whenever the value of that element changes
 React does not trigger a re-render.
+
+This is called an uncontrolled input because React does not control the state of the element but the DOM does.
+
+[useRef](https://blog.logrocket.com/how-to-autofocus-using-react-hooks/)
