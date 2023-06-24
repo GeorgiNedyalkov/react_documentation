@@ -136,3 +136,67 @@ We use useEffect when we want to get data from a server and load it initially in
 
 If we are responding to a user interaction we may not need use effect we can just do the
 action at that point.
+
+useEffect can be problematic when it depends on data, that it also writes.
+
+```javascript
+function Stopwatch() {
+  const [time, setTime] = useState(0);
+
+  useEffect(() => {
+    setInterval(() => {
+      console.log(time);
+      setTime(time + 1);
+    }, 1000);
+  }, []);
+
+  return <div className="mb-5">Time: {time}</div>;
+}
+```
+
+In this function there is a bug where time is set to 0 and does not update.
+This is because when we create the timer we create a closure which captures the initial state of time
+which was 0. Inside of this function time is forever going to be zero.
+
+If we add `time` as a dependency we are going to run into an infinite loop.
+
+The way to fix this is to set the state with a callback function that takes the old value and creates new state
+by using the oldValue to the new value.
+
+```javascript
+import { useState, useEffect } from "react";
+
+function Stopwatch() {
+  const [time, setTime] = useState(0);
+
+  useEffect(() => {
+    setInterval(() => {
+      setTime((t) => t + 1);
+    }, 1000);
+  }, []);
+
+  return <div className="mb-5">Time: {time}</div>;
+}
+```
+
+The function that we give `useEffect` can return a clean up function.
+That clean up function will get called when that useEffect is unmounted.
+In our case we want to clear the interval we created.
+
+```javascript
+export default function Stopwatch() {
+  const [time, setTime] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime((t) => {
+        return t + 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return <div className="mb-5">Time: {time}</div>;
+}
+```
