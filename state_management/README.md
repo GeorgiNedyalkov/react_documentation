@@ -131,3 +131,8 @@ We need to stabilize references that we send to a nested component.
 The other time we want to use useCallback is if we are creating a custom hook.
 
 ### useEffect
+
+We use useEffect when we want to get data from a server and load it initially in our app.
+
+If we are responding to a user interaction we may not need use effect we can just do the
+action at that point.
