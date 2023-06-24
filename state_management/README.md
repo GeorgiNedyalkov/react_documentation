@@ -200,3 +200,10 @@ export default function Stopwatch() {
   return <div className="mb-5">Time: {time}</div>;
 }
 ```
+
+### useRef
+
+The most common use for useRef is to get a reference for an HTML element and access its built-in methods and properties.
+
+The second use is to set state without triggering a re-redner. When we use useRef and we set the reference to a html element whenever the value of that element changes
+React does not trigger a re-render.
