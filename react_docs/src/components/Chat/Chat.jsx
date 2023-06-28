@@ -1,12 +1,21 @@
-import { useEffect } from "react";
+import { useState } from "react";
 
-export default function ChatRoom({ roomId }) {
-  useEffect(() => {
-    const connection = createConnection();
-    connection.connect();
+import ChatRoom from "./ChatRoom/ChatRoom";
 
-    return () => connection.disconnect();
-  }, [roomId]);
+export default function Chat() {
+  const [roomId, setRoomId] = useState("general");
 
-  return <h1 className="text-2xl">Wecolme to the {roomId} room!</h1>;
+  return (
+    <>
+      <label>
+        Choose the chat room:
+        <select value={roomId} onChange={(e) => setRoomId(e.target.value)}>
+          <option value="general">general</option>
+          <option value="music">music</option>
+          <option value="travel">travel</option>
+        </select>
+      </label>
+      <ChatRoom roomId={roomId} />
+    </>
+  );
 }
