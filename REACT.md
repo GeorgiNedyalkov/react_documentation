@@ -196,3 +196,10 @@ _Component_
 
 The whole application is composed of components which include both the presentation of the UI and the business
 logic.
+
+## What are keys in React and Why are they used?
+
+Key are used when rendering a list of items.
+Each item has a key property which is the id of that item. Usually it is an id from a database but can be set manually. It is not recommended to use an index as an id.
+
+Keys are used by react to know what happened if one of the items is inserted, deleted or reordered.

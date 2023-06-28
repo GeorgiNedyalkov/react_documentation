@@ -1,10 +1,7 @@
 import { useState, useMemo, useCallback } from "react";
 
 export function SortedList({ list, sortFunc }) {
-  console.log("Sorted list render");
-
   const sortedList = useMemo(() => {
-    console.log("Running sort");
     return [...list].sort(sortFunc);
   }, [list, sortFunc]);
 

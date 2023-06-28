@@ -2,14 +2,13 @@ import { useState, useEffect } from "react";
 
 export default function ExampleUseEffect() {
   const [names, setNames] = useState([]);
+  const [selectedNameDetails, setSelectedNameDetails] = useState(null);
 
   useEffect(() => {
     fetch("/names.json")
       .then((res) => res.json())
       .then((data) => setNames(data));
   }, []);
-
-  const [selectedNameDetails, setSelectedNameDetails] = useState(null);
 
   const onSelectName = (name) => {
     fetch(`/${name}.json`)
