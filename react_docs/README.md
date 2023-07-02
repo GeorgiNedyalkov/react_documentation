@@ -61,3 +61,22 @@ The most common use case for using ref is to access a DOM element.
 - Ref let's you remember information between re-renders of a component.
 - Setting the value of ref does not trigger a re-render.
 - Don't read or write `ref.current` during rendering. This makes the component hard to predict.
+
+### Manupulating the DOM with Refs
+
+Sometimes we might need to access the dom elements managed by react, for example to focus a node,
+sroll to it, or measure its size and position.
+
+#### Getting a ref to the node
+
+1. Import the `useRef` hook.
+2. Declare a reference inside the component
+3. Pass the reference as a `ref` attribute to the JSX tag for which we want to access the DOM node.
+
+```javascript
+import { useRef } from "react";
+
+const myRef = useRef(null);
+
+<div ref={myRef} />;
+```

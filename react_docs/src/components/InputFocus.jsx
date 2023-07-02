@@ -1,10 +1,6 @@
 import { useRef } from "react";
 
-export default function App() {
-  return <div className="m-10"></div>;
-}
-
-function InputFocus() {
+export default function InputFocus() {
   const myRef = useRef(null);
 
   function handleFocus() {
