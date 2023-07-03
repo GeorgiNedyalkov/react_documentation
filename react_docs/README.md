@@ -80,3 +80,13 @@ const myRef = useRef(null);
 
 <div ref={myRef} />;
 ```
+
+#### When React attaches the refs
+
+Every update in React is split into two phases:
+
+- During render
+- During commit
+
+React sets ref.current during the commit. Before updating the DOM, React sets the affecter ref.current to null.
+After updating the DOM, React immediately sets them to the corresponding DOM nodes.
