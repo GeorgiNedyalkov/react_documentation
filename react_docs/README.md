@@ -90,3 +90,27 @@ Every update in React is split into two phases:
 
 React sets ref.current during the commit. Before updating the DOM, React sets the affecter ref.current to null.
 After updating the DOM, React immediately sets them to the corresponding DOM nodes.
+
+_Flush sync_
+
+In React state updates are queued.
+We can force React to update ("flush") the DOM synchronously using `flushSync`
+
+#### Best practices for DOM manipulation with refs
+
+Common use cases: managing focus, scroll position, or calling browser APIs that React doesn't expose.
+
+If you try to modify the DOM manually, there is a risk conflicting the changes that React is making.
+
+Avoid changing DOM nodes managed by React. Modifying, adding children to, or removing children from elements
+that are managed by React can lead to inconsistent visual results or crashes like above.
+
+#### Recap
+
+- Refs are most commonly used to hold DOM elements.
+- You can instruct React to put a DOM node into `myRef.current` by passing `<div ref={myRef} />`
+- Usually we use refs for non-destructive actions like scrolling, focusing, or measuring DOM elements.
+- You can expose a DOM node into to a component by using `forwardRef` and passing the second `ref` argument to a
+  specific node.
+- Avoid changing DOM nodes managed by React.
+- If we modify DOM nodes managed by React, we can modify parts that React has no reason to update.
