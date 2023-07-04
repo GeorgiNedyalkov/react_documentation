@@ -114,3 +114,52 @@ that are managed by React can lead to inconsistent visual results or crashes lik
   specific node.
 - Avoid changing DOM nodes managed by React.
 - If we modify DOM nodes managed by React, we can modify parts that React has no reason to update.
+
+### You Might Not Need an Effect
+
+#### How to remove unncessary efects
+
+- You don't need Effects to transform data for rendering.
+- You don't need Effect to hanle user events.
+
+#### Updating state based on props or state
+
+When something can be calculated from existing props or state, don't put it in state.
+Instead calculate it during rendering.
+
+#### Caching expensive calculations
+
+#### Resetting all state when a prop changes
+
+Passing a key to a component you’re asking React to treat two components with different keys as two different components that should not share any state.
+
+#### Adjusting some state with a prop change
+
+#### Sharing logic between event handlers
+
+#### Sending a post reuqest
+
+If this logic is caused by a particular interaction, keep it in the event handler. If it’s caused by the user seeing the component on the screen, keep it in the Effect.
+
+#### Chain of computations
+
+#### Initializing the application
+
+#### Notifying a parent component about state changes
+
+#### Passing data to the parent
+
+#### Subscribing to an external store
+
+#### Fetching data
+
+#### Recap
+
+- If you can calculate something during render, you don’t need an Effect.
+- To cache expensive calculations, add useMemo instead of useEffect.
+- To reset the state of an entire component tree, pass a different key to it.
+- To reset a particular bit of state in response to a prop change, set it during rendering.
+- Code that runs because a component was displayed should be in Effects, the rest should be in events.
+- If you need to update the state of several components, it’s better to do it during a single event.
+- Whenever you try to synchronize state variables in different components, consider lifting state up.
+- You can fetch data with Effects, but you need to implement cleanup to avoid race conditions.
