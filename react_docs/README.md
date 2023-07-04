@@ -137,7 +137,7 @@ Passing a key to a component you’re asking React to treat two components with 
 
 #### Sharing logic between event handlers
 
-#### Sending a post reuqest
+#### Sending a post request
 
 If this logic is caused by a particular interaction, keep it in the event handler. If it’s caused by the user seeing the component on the screen, keep it in the Effect.
 
