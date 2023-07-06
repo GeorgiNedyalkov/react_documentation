@@ -163,3 +163,54 @@ If this logic is caused by a particular interaction, keep it in the event handle
 - If you need to update the state of several components, it’s better to do it during a single event.
 - Whenever you try to synchronize state variables in different components, consider lifting state up.
 - You can fetch data with Effects, but you need to implement cleanup to avoid race conditions.
+
+### Lifecycle of Reactive Effects
+
+#### The lifecycle of an Effect
+
+#### Why synchronizaiton may need to happen more than once
+
+#### How React re-synchronizes your Effect?
+
+#### Thinking from the Effect's perspective
+
+#### How React knows that it needs to re-synchronize the Effect
+
+#### Each Effect represents a separate synchronization process
+
+#### Effects "react" to reactive values
+
+#### What an Effect with empty dependencies means
+
+#### All variables declared in the component body are reactive
+
+#### React verifies that you specified every reactive value as a dependency
+
+#### What to do when you don't want to re-synchronize
+
+#### Reacap
+
+- Components can mount, update and unmount.
+- Each effect has a separate lifecyce from the surrounding component.
+- Each effect describes a separate synchronization process that can start and stop.
+- When you write and read Effects, think from each component's perspective (how to start/ stop syncronization).
+- Values declared inside the components body are "reactive".
+- Reactive values should re-synchronize the Effect because they can change over time.
+- The linter verifies that all reactive values used inside the useEffect are specified as dependencies.
+- All error flags in the linter are legitimate.
+
+### Separating Events from Effects
+
+Event handlers only run when the user performs the same action again.
+
+Effects re-syncronize whenever a value that they read either from props or state, is different from the last re-render.
+
+We will learn:
+
+- How to choose between an event handler and an Effect.
+- Why Effects are reactive, and event handlers are not.
+- What to do when we want a part of the Effect's code to not be reactive.
+- What Effect Events are, and how to extract them from your Effects.
+- How to read the latest props and state from Effects using Effect Events.
+
+#### Choosing between event handlers and Effects
