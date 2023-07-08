@@ -1,29 +1,18 @@
-import { useEffect, useState } from "react";
+import SaveButton from "./components/SaveButton";
+import { useOnlineStatus } from "./hooks/useOnlineStatus";
 
 export default function App() {
-  return <div className="m-10"></div>;
+  return (
+    <div className="m-10">
+      <SaveButton />
+
+      <StatusBar />
+    </div>
+  );
 }
 
 export function StatusBar() {
-  const [isOnline, setIsOnline] = useState(false);
-
-  useEffect(() => {
-    function handleOnline() {
-      setIsOnline(true);
-    }
-
-    function handleOffline() {
-      setIsOnline(false);
-    }
-
-    window.addEventListener("online", handleOnline);
-    window.addEventListener("offline", handleOffline);
-
-    return () => {
-      window.removeEventListener("online", handleOnline);
-      window.removeEventListener("offline", handleOffline);
-    };
-  }, []);
+  const isOnline = useOnlineStatus();
 
   return <h1>{isOnline ? "✅ Success" : "❌ Offline"}</h1>;
 }
