@@ -1,18 +1,30 @@
-import SaveButton from "./components/SaveButton";
-import { useOnlineStatus } from "./hooks/useOnlineStatus";
+import { useFormInput } from "./hooks/useFormInput";
 
 export default function App() {
   return (
     <div className="m-10">
-      <SaveButton />
-
-      <StatusBar />
+      <Form />
     </div>
   );
 }
 
-export function StatusBar() {
-  const isOnline = useOnlineStatus();
+export function Form() {
+  const firstNameProps = useFormInput("Mary");
+  const lastNameProps = useFormInput("Poppins");
 
-  return <h1>{isOnline ? "✅ Success" : "❌ Offline"}</h1>;
+  return (
+    <div className="flex flex-col">
+      <label>
+        First name:
+        <input type="text" {...firstNameProps} />
+      </label>
+
+      <label>
+        Last name:
+        <input type="text" {...lastNameProps} />
+      </label>
+
+      <p></p>
+    </div>
+  );
 }
