@@ -1,19 +1,5 @@
-import { useEffect, useState } from "react";
-import { createConnection } from "../../utils/connection";
-
-const serverUrl = "http://127.0.0.1:5173/";
-
-export function ChatRoom({ roomId }) {
-  useEffect(() => {
-    const connection = createConnection(serverUrl, roomId);
-    connection.connect();
-    return () => connection.disconnect();
-  }, [roomId]);
-
-  return (
-    <h1 className="text-2xl font-semibold">Welcome to the {roomId} room!</h1>
-  );
-}
+import { useState } from "react";
+import ChatRoom from "./ChatRoom";
 
 export default function ChatApp() {
   const [roomId, setRoomId] = useState("general");
