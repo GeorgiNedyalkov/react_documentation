@@ -1,41 +1,23 @@
-import { useState } from "react";
+import { useFormInput } from "../hooks/useFormInput";
 
 export default function Form() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-
-  function handleFirstNameChange(e) {
-    setFirstName(e.target.value);
-  }
-
-  function handleLastNameChange(e) {
-    setLastName(e.target.value);
-  }
-
-  const fullName = firstName + " " + lastName;
+  const firstNameProps = useFormInput("Georgi");
+  const lastNameProps = useFormInput("Nedyalkov");
 
   return (
     <>
       <label>
         First Name:
-        <input
-          type="text"
-          className="border ml-1 mr-2"
-          value={firstName}
-          onChange={handleFirstNameChange}
-        />
+        <input type="text" className="border ml-1 mr-2" {...firstNameProps} />
       </label>
       <label>
         Last Name:
-        <input
-          type="text"
-          className="border ml-1 mr-2"
-          value={lastName}
-          onChange={handleLastNameChange}
-        />
+        <input type="text" className="border ml-1 mr-2" {...lastNameProps} />
       </label>
       <p>
-        <b>Welcome home {fullName}</b>
+        <b>
+          Good morning, {firstNameProps.value} {lastNameProps.value}.
+        </b>
       </p>
     </>
   );
