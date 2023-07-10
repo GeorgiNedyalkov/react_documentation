@@ -3,13 +3,17 @@ import { useOnlineStatus } from "../hooks/useOnlineStatus";
 export default function SaveButton() {
   const isOnline = useOnlineStatus();
 
-  function handleSaveClick() {
-    console.log("progress saved");
+  function handleSave() {
+    console.log("Progress saved ✅");
   }
 
   return (
-    <button disabled={!isOnline} onClick={handleSaveClick}>
-      {isOnline ? "Save progress" : "Reconnecting"}
+    <button
+      className="border p-1 m-1"
+      onClick={handleSave}
+      disabled={!isOnline}
+    >
+      {isOnline ? "save progress" : "reconnecting..."}
     </button>
   );
 }
